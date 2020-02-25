@@ -1,0 +1,86 @@
+{
+  "name": "wdio-fefanf-html-reporter",
+  "version": "0.0.1",
+  "description": "A WebdriverIO plugin. Create a basic HTML formatted report",
+  "main": "build/index.js",
+  "types": "wdio-html-reporter.d.ts",
+  "scripts": {
+    "build:test": "babel test/* -d build-test",
+    "build": "babel src/* -d build/ && babel test/* -d build-test",
+    "clean:build": "rimraf ./build",
+    "clean:reports": "rimraf ./reports",
+    "test": "mocha build-test/**/*.js --require @babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:aruiz-caritsqa/wdio-fefanf-html-reporter.git"
+  },
+  "directories": {
+    "src": "./src"
+  },
+  "keywords": [
+    "html",
+    "reporter",
+    "webdriverio",
+    "wdio",
+    "wdio-plugin",
+    "wdio-reporter",
+    "wdio-fefanf-html-reporter"
+  ],
+  "author": "Adrien Ruiz Gauder <caritsqa@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aruiz-caritsqa/wdio-fefanf-html-reporter/issues"
+  },
+  "homepage": "https://github.com/aruiz-caritsqa/wdio-fefanf-html-reporter#readme",
+  "dependencies": {
+    "@log4js-node/log4js-api": "^1.0.2",
+    "@wdio/reporter": "^5.11.0",
+    "base64-img": "1.0.4",
+    "fs-extra": "^8.1.0",
+    "handlebars": "^4.6.0",
+    "lodash": "^4.17.11",
+    "mocha": "^6.2.0",
+    "moment": "^2.20.1",
+    "moment-duration-format": "^2.2.1",
+    "open": "^6.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-export-default-from": "^7.7.0",
+    "@babel/plugin-proposal-function-bind": "^7.7.0",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.7.0",
+    "@babel/plugin-syntax-export-default-from": "^7.7.0",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/register": "^7.7.7",
+    "babel-plugin-source-map-support": "^2.1.1",
+    "chai": "^4.2.0",
+    "log4js": "^5.1.0",
+    "mocha": "^6.2.0",
+    "rimraf": "^2.6.3"
+  },
+  "contributors": [
+    "Adrien Ruiz Gauder <caritsqa@gmail.com>",
+    "Gisella Fama <gisella.fama@gmail.com>",
+    "George Crawford <george.crawford@ft.com>",
+    "Christian Bromann <github@christian-bromann.com>",
+    "Markus Benning <ich@markusbenning.de>",
+    "Rich Peters <16782353+rpii@users.noreply.github.com>"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  }
+}
