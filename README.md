@@ -45,7 +45,7 @@ module.exports = {
             useOnAfterCommandForScreenshot: false,
 
             // to use the template override option, can point to your own file in the test project:
-            // templateFilename: path.resolve(__dirname, '../src/wdio-html-reporter-alt-template.hbs'),
+            // templateFilename: path.resolve(__dirname, '../src/wdio-fefanf-html-reporter-alt-template.hbs'),
             
             // to add custom template functions for your custom template:
             // templateFuncs: {
@@ -78,7 +78,7 @@ webdriver.io will call the reporter for each test suite.  It does not aggregate 
             reportTitle: 'Master Report',
             
             // to use the template override option, can point to your own file in the test project:
-            // templateFilename: path.resolve(__dirname, '../src/wdio-html-reporter-alt-template.hbs')
+            // templateFilename: path.resolve(__dirname, '../src/wdio-fefanf-html-reporter-alt-template.hbs')
         });
         reportAggregator.clean() ;
 
