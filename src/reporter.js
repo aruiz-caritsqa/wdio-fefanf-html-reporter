@@ -20,7 +20,7 @@ class HtmlReporter extends WDIOReporter {
             templateFuncs: {},
             reportTitle: 'Test Report Title',
             showInBrowser: false,
-            useOnAfterCommandForScreenshot: true,
+            // useOnAfterCommandForScreenshot: true,
             LOG : null
         }, opts);
         super(opts);
@@ -45,8 +45,6 @@ class HtmlReporter extends WDIOReporter {
         };
         this.openInProgress = false;
         this.defaultTestIndent = '   ' ;
-        proxy.connectMessageEvent(this.saveMessage.bind(this));
-        proxy.connectScreenshotEvent(this.saveScreenshot.bind(this));
 
         process.on('test:innerStepPass', (message) => {
             console.log(`\n>>> test:innerStepPass :: ${JSON.stringify(message)}\n`);
@@ -138,26 +136,26 @@ class HtmlReporter extends WDIOReporter {
         this.indents--;
     }
 
-    isScreenshotCommand(command) {
-        const isScreenshotEndpoint = /\/session\/[^/]*\/screenshot/
-        return isScreenshotEndpoint.test(command.endpoint)
-    }
+    // isScreenshotCommand(command) {
+    //     const isScreenshotEndpoint = /\/session\/[^/]*\/screenshot/
+    //     return isScreenshotEndpoint.test(command.endpoint)
+    // }
 
-    //this is a hack to get around lack of onScreenshot event
-    onAfterCommand(command) {
-        if (this.options.useOnAfterCommandForScreenshot) {
-            if (this.isScreenshotCommand(command) && command.result.value) {
+    // //this is a hack to get around lack of onScreenshot event
+    // onAfterCommand(command) {
+    //     if (this.options.useOnAfterCommandForScreenshot) {
+    //         if (this.isScreenshotCommand(command) && command.result.value) {
 
-                const timestamp = moment().format('YYYYMMDD-HHmmss.SSS');
-                const filepath = path.join(this.options.outputDir, '/screenshots/', this.cid, timestamp, this.options.filename + '.png');
-                this.log("onAfterCommand: taking screenshot " + filepath);
-                fs.outputFileSync(filepath, Buffer.from(command.result.value, 'base64'));
+    //             const timestamp = moment().format('YYYYMMDD-HHmmss.SSS');
+    //             const filepath = path.join(this.options.outputDir, '/screenshots/', this.cid, timestamp, this.options.filename + '.png');
+    //             this.log("onAfterCommand: taking screenshot " + filepath);
+    //             fs.outputFileSync(filepath, Buffer.from(command.result.value, 'base64'));
 
-                let test = this.getTest(this.testUid);
-                test.events.push({type: 'screenshot', value: filepath});
-            }
-        }
-    }
+    //             let test = this.getTest(this.testUid);
+    //             test.events.push({type: 'screenshot', value: filepath});
+    //         }
+    //     }
+    // }
 
     log(message,object) {
         if (this.options.LOG || this.options.debug ) {
