@@ -41,9 +41,6 @@ module.exports = {
             //to show the report in a browser when done
             showInBrowser: true,
 
-            //to turn on screenshots after every test
-            useOnAfterCommandForScreenshot: false,
-
             // to use the template override option, can point to your own file in the test project:
             // templateFilename: path.resolve(__dirname, '../src/wdio-fefanf-html-reporter-alt-template.hbs'),
             
@@ -151,13 +148,6 @@ wdio.conf.js
         process.emit('test:screenshot', filepath);
     },
 ```
-
-## To take a screenshot after each test completes:
-
-Set the option useOnAfterCommandForScreenshot to true  
-
-This option is used if you are not using either of the screenshot options above.
-
 
 ## InnerStep results
 This is a feature tied in the the [wdio-fefanf-boilerplate](https://github.com/aruiz-caritsqa/wdio-fefanf-boilerplate) project.
