@@ -186,16 +186,15 @@
         .filter {
             border: 1px solid;
             padding: 8px;
-            border-radius: 4px;
-            background-color: #8ae2db;
+            background-color: #ddd;
             /*color:white;*/
         }
+
 
         .filterOff{
             border: 1px solid;
             padding: 8px;
-            border-radius: 4px;
-            background-color: rgba(138, 226, 219, 0.59);
+            background-color: #aaa;
             /*color:white;*/
         }
         /* Style the accordion panel. Note: hidden by default */
@@ -214,11 +213,6 @@
 
     <h2>Summary</h2>
     <table class="table">
-        <thead>
-        <th>Key</th>
-        <th>Value</th>
-        </thead>
-
         <tbody>
         <tr>
             <td>Start</td>
@@ -232,6 +226,10 @@
             <td>Duration</td>
             <td>{{#humanizeDuration metrics.duration}}{{/humanizeDuration}}</td>
         </tr>
+        <tr>
+            <td>Base URL</td>
+            <td>{{info.config.baseUrl}}</td>
+        </tr>         
         <tr>
             <td>Browser</td>
             <td>{{info.capabilities.browserName}}</td>
@@ -280,8 +278,6 @@
         <table class="table table-bordered">
             <tr>
                 <td colspan="2">
-
-                    <h3>{{info.cid}}</h3>
                     <table class="table table-bordered">
                         {{#if specs }}
                             {{#each specs as | spec|}}
@@ -298,7 +294,7 @@
                         {{/if}}
                         {{#each suites as |suite| }}
                             {{#isValidSuite suite}}
-                                <table class="table table-bordered table-suite">
+                                <table class="table table-bordered table-suite {{#suiteStateColour suite.tests}}{{/suiteStateColour}}-table">
                                     <tr class="suite-header">
                                         <td colspan="2"
                                             class="{{#suiteStateColour suite.tests}}{{/suiteStateColour}}">
@@ -448,7 +444,7 @@
     });
 
     $('.toggleFailingTests').click(function () {
-        $.each($('.suite-fail'), function () {
+        $.each($('.suite-fail-table'), function () {
             if ($(this).parent().find('span').hasClass('glyphicon-chevron-up')) {
                 $(this).parent().find('span').toggleClass('glyphicon glyphicon-chevron-down', 'glyphicon glyphicon-chevron-up', true);
                 $(this).parent().find('span').toggleClass('glyphicon glyphicon-chevron-up', 'glyphicon glyphicon-chevron-down', true);
@@ -464,7 +460,7 @@
     });
 
     $('.togglePassingTests').click(function () {
-        $.each($('.suite-pass'), function () {
+        $.each($('.suite-pass-table'), function () {
             if ($(this).parent().find('span').hasClass('glyphicon-chevron-up')) {
                 $(this).parent().find('span').toggleClass('glyphicon glyphicon-chevron-down', 'glyphicon glyphicon-chevron-up', true);
                 $(this).parent().find('span').toggleClass('glyphicon glyphicon-chevron-up', 'glyphicon glyphicon-chevron-down', true);
