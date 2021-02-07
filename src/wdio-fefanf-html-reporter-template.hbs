@@ -377,11 +377,27 @@
                                                                         {{/ifEventIsScreenshot}}
 
                                                                         {{#ifEventIsLogMessage event}}
-                                                                            <tr class="test-row log">
-                                                                                <td colspan="2">
-                                                                                    <pre class='pre {{logClass event.value}}'>{{event.value}}</pre>
-                                                                                </td>
-                                                                            </tr>
+                                                                            {{#if event.value.split('\n').length > 1 }}
+                                                                                <tr class="test-row ">
+                                                                                    <td colspan="2" >
+                                                                                        <p class="pre assert expandable-control">
+                                                                                            <span style="margin: 2px; padding: 1px" class='glyphicon glyphicon-chevron-down'>&nbsp;</span>
+                                                                                            {{event.value.split('\n')[0]}}
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr class="test-row log">
+                                                                                    <td colspan="2">
+                                                                                        <pre class='pre {{logClass event.value}}'>{{event.value}}</pre>
+                                                                                    </td>
+                                                                                </tr>                                                                                
+                                                                            {{else}}
+                                                                                <tr class="test-row log">
+                                                                                    <td colspan="2">
+                                                                                        <pre class='pre {{logClass event.value}}'>{{event.value}}</pre>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            {{/if}}    
                                                                         {{/ifEventIsLogMessage}}
 
                                                                         {{#ifEventIsInnerStepPass event}}
