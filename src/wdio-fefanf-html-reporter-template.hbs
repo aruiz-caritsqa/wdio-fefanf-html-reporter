@@ -178,10 +178,10 @@
             font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
         }
 
-        .stack {
+        .error-output {
             background-color: rgba(156, 135, 255, 0.36);
             margin-left:24px;
-        }
+        }      
 
         .filter {
             border: 1px solid;
@@ -347,20 +347,20 @@
                                                                     {{#each test.events as |event|}}
                                                                         {{#ifEventIsError event}}
                                                                             <tr class="test-row ">
-                                                                                <td colspan="2" >
+                                                                                <td colspan="2" style="padding: 0px">
                                                                                     <p class="pre assert expandable-control">
                                                                                         <span style="margin: 2px; padding: 1px" class='glyphicon glyphicon-chevron-down'>&nbsp;</span>
                                                                                         Assertion: {{event.message}}
                                                                                     </p>
                                                                                 </td>
                                                                             </tr>
-                                                                        {{#if event.stack }}
-                                                                            <tr class="test-row">
-                                                                                <td colspan="2">
-                                                                                   <pre class='pre stack panel'>{{event.stack}}</pre>
-                                                                                </td>
-                                                                            </tr>
-                                                                        {{/if}}
+                                                                            {{#if event.stack }}
+                                                                                <tr class="test-row">
+                                                                                    <td colspan="2" style="padding: 0px">
+                                                                                    <pre class='pre error-output stack panel'>{{event.stack}}</pre>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            {{/if}}
                                                                         {{/ifEventIsError}}
 
                                                                         {{#ifEventIsScreenshot event}}
@@ -376,29 +376,7 @@
                                                                         </tr>
                                                                         {{/ifEventIsScreenshot}}
 
-                                                                        {{#ifEventIsLogMessage event}}
-                                                                            {{#if event.value.split('\n').length > 1 }}
-                                                                                <tr class="test-row ">
-                                                                                    <td colspan="2" >
-                                                                                        <p class="pre assert expandable-control">
-                                                                                            <span style="margin: 2px; padding: 1px" class='glyphicon glyphicon-chevron-down'>&nbsp;</span>
-                                                                                            {{event.value.split('\n')[0]}}
-                                                                                        </p>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr class="test-row log">
-                                                                                    <td colspan="2">
-                                                                                        <pre class='pre {{logClass event.value}}'>{{event.value}}</pre>
-                                                                                    </td>
-                                                                                </tr>                                                                                
-                                                                            {{else}}
-                                                                                <tr class="test-row log">
-                                                                                    <td colspan="2">
-                                                                                        <pre class='pre {{logClass event.value}}'>{{event.value}}</pre>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            {{/if}}    
-                                                                        {{/ifEventIsLogMessage}}
+                                                                        {{#ifEventIsLogMessage event}}{{/ifEventIsLogMessage}}
 
                                                                         {{#ifEventIsInnerStepPass event}}
                                                                             <tr border="1" class="test-row log">
