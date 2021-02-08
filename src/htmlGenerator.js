@@ -120,10 +120,33 @@ class HtmlGenerator  {
             });
 
             Handlebars.registerHelper('ifEventIsLogMessage', function (event, hbopts) {
-                if (event.type === 'log') {
-                    return hbopts.fn(this);
+                if (event.type !== 'log') {
+                    return hbopts.inverse(this);
                 }
-                return hbopts.inverse(this);
+
+                if (event.value.split('\n').length > 2) {
+                    return `
+                    <tr class="test-row">
+                    <td colspan="2" style="padding: 0px">
+                        <p class="pre log-output expandable-control">
+                            <span style="margin: 2px; padding: 1px" class='glyphicon glyphicon-chevron-down'>&nbsp;</span>
+                            Log Message: ${event.value.split('\n')[0].substr(0, 100)}...
+                        </p>
+                    </td>
+                    </tr>
+                    <tr class="test-row">
+                        <td colspan="2" style="padding: 0px">
+                            <pre class='pre log-output panel stack ${event.value.includes('Test Iteration') ? 'test-iteration' : 'log-output'}'>${event.value}</pre>
+                        </td>
+                    </tr>`;
+                } else {
+                    return `
+                    <tr class="test-row">
+                        <td colspan="2" style="padding: 0px">
+                            <pre class='pre log-output ${event.value.includes('Test Iteration') ? 'test-iteration' : 'log-output'}'>${event.value}</pre>
+                        </td>
+                    </tr>`;
+                }
             });
 
             Handlebars.registerHelper('ifEventIsInnerStepPass', function (event, hbopts) {
