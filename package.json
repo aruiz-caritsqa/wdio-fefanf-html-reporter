@@ -59,7 +59,7 @@
     "@babel/register": "^7.7.7",
     "babel-plugin-source-map-support": "^2.1.1",
     "chai": "^4.2.0",
-    "log4js": "^5.1.0",
+    "log4js": "^6.4.0",
     "mocha": "^6.2.0",
     "rimraf": "^2.6.3"
   },
