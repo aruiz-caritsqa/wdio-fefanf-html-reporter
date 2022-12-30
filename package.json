@@ -40,7 +40,7 @@
     "fs-extra": "^8.1.0",
     "handlebars": "^4.6.0",
     "lodash": "^4.17.11",
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "moment": "^2.20.1",
     "moment-duration-format": "^2.2.1",
     "open": "^6.0.0",
@@ -60,7 +60,7 @@
     "babel-plugin-source-map-support": "^2.1.1",
     "chai": "^4.2.0",
     "log4js": "^5.1.0",
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "rimraf": "^2.6.3"
   },
   "contributors": [
